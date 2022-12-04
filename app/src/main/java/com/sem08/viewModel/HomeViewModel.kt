@@ -9,13 +9,14 @@ import com.sem08.repository.LugarRepository
 
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: LugarRepository = LugarRepository(LugarDao())
+    private var repository: LugarRepository = LugarRepository(LugarDao())
     val obtenerLugares: MutableLiveData<List<Lugar>>
 
 
     init {
 
         obtenerLugares = repository.obtenerLugares
+
     }
 
     fun guardarLugar(lugar: Lugar) {

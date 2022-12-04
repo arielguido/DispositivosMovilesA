@@ -49,6 +49,23 @@ android:text="@string/btUpdateLugar" />
 android:id="@+id/bt_delete_lugar"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:text="@string/btDeleteLugar" />
+android:text="@string/bt_delete_lugar" />
 
-    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btPlay"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/msgEscucharAudio"
+        android:src="@drawable/ic_play" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="wrap_content"
+        android:layout_height="380dp"
+        android:contentDescription="@string/msg_imagen"
+        android:scaleType="centerInside"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/backgrounds/scenic" />
+</LinearLayout>

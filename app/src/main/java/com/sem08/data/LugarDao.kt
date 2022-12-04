@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.ktx.Firebase
 import com.sem08.model.Lugar
-import kotlin.math.log
+
 
 class LugarDao {
   // Firebase vars

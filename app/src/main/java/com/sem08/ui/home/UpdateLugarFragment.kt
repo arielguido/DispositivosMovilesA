@@ -1,5 +1,6 @@
 package com.sem08.ui.home
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.sem08.R
 import com.sem08.databinding.FragmentUpdateLugarBinding
 import com.sem08.model.Lugar
 import com.sem08.viewModel.HomeViewModel
+import io.grpc.NameResolver.Args
 
 class UpdateLugarFragment : Fragment() {
     //recuperar elementos enviados
@@ -33,13 +35,12 @@ class UpdateLugarFragment : Fragment() {
 
         //carga de lugar
 
-        binding.etNombre.setText(args.lugarArg.nobre)
+        binding.etNombre.setText(args.lugarArg.nombre)
         binding.etCorreoLugar.setText(args.lugarArg.correo)
         binding.etTelefono.setText(args.lugarArg.telefono)
         binding.etWeb.setText(args.lugarArg.web)
 
-        binding.btUpdateLugar.setOnclickListener { updateLugar() }
-
+        binding.btUpdateLugar.setOnClickListener { updateLugar() }
 
         // Inflate the layout for this fragment
         return binding.root
@@ -53,7 +54,7 @@ class UpdateLugarFragment : Fragment() {
         val web = binding.etWeb.text.toString()
 
         if (nombre.isNotEmpty()) {
-            val lugar = Lugar(args.lugarArg.id,nombre, correo, telefono, web)
+            val lugar = Lugar(args.lugarArg.id,nombre, correo, telefono, web,args.lugarArg.rutaAudio, args.lugarArg.rutaImagen)
             homeViewModel.guardarLugar(lugar)
             Toast.makeText(requireContext(), getText(R.string.ms_UpdateLugar), Toast.LENGTH_LONG)
                 .show()
@@ -64,4 +65,19 @@ class UpdateLugarFragment : Fragment() {
                 .show()
         }
     }
+    //private fun eliminarLugar() {
+    //  val builder = AlertDialog.Builder(requireContext())
+    //  builder.setTitle(getString(R.string.bt_delete_lugar))
+    //  builder.setMessage(getString(R.string.msg_seguro_borrado)+" ${args.lugarArg.nombre}?")
+    //  builder.setNegativeButton(getString(R.string.msg_no)) {_,_ -> }
+    //  builder.setPositiveButton(getString(R.string.msg_si)) {_,_ ->
+    //      lugarViewModel.eliminarLugar(args.lugarArg)
+    //      Toast.makeText(requireContext(),
+    //          getString(R.string.msg_lugar_deleted),
+    //          Toast.LENGTH_SHORT).show()
+    //      findNavController().navigate(R.id.action_updateLugarFragment_to_nav_home)
+    //  }
+
+    //  builder.create().show()
+    //}
 }

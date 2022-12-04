@@ -2,13 +2,13 @@ package com.sem08.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.sem08.databinding.FragmentAddLugarBinding
+import com.bumptech.glide.Glide
 import com.sem08.databinding.LugarFilaBinding
 import com.sem08.model.Lugar
 import com.sem08.ui.home.HomeFragmentDirections
-import com.sem08.ui.home.UpdateLugarFragment
 
 class LugarAdapter: RecyclerView.Adapter<LugarAdapter.LugarViewHolder>() {
     //Lista de lugares
@@ -28,9 +28,15 @@ class LugarAdapter: RecyclerView.Adapter<LugarAdapter.LugarViewHolder>() {
             itemBinding.tvTelefono.text = lugar.telefono
 
 
+if (lugar.rutaImagen?.isNotEmpty()==true){
+    Glide.with(itemBinding.root.context)
+        .load(lugar.rutaImagen)
+        .into(itemBinding.imagen)
+            }
+
             itemBinding.vistaFila.setOnClickListener{
                 val accion = HomeFragmentDirections.actionNavHomeToUpdateLugarFragment(lugar)
-                itemBinding.findNavController().navigate(accion)
+                itemView.findNavController().navigate(accion)
             }
 
         }
